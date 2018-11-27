@@ -21,10 +21,11 @@ class Hero:
             return 0
 
         for ability in self.abilities:
-            total_damage += ability.max_damage
+            total_damage += ability.attack()
 
         return total_damage
-            
+
+         
     
     def take_damage(self):
         self.current_health -= self.total_damage
@@ -91,19 +92,21 @@ class Team:
     def __init__(self, team_name):
         '''Instantiate resources.'''
         self.name = team_name
-        self.heroes = []
+        self.heroes = list()
     
     def add_hero(self, Hero):
         '''Add Hero object to heroes list.'''
         self.heroes.append(Hero)
     
     def remove_hero(self, name):
-        '''
-        Remove hero from heroes list.
-        If Hero isn't found return 0.
-        '''
-        print (self.heroes)
-        self.heroes.remove(name)
+        for hero in self.heroes:
+            if hero.name == name:
+                self.heroes.pop(hero)
+            else:
+                return 0
+                
+    
+        
     
     def view_all_heroes(self):
         '''Print out all heroes to the console.'''
@@ -114,7 +117,7 @@ class Team:
             print('ELSE BLOCK')
             for hero in self.heroes:
                 print('********* FOR LOOP')
-                print(hero)
+                print(hero.name)
 
     
 
