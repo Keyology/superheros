@@ -2,9 +2,10 @@ import random
 
 
 class Hero:
-    def __init__(self, name, current_health, starting_health =100, ):
+    def __init__(self, name, starting_health =100):
         self.name = name 
         self.abilities = list()
+        self.kills = 0
         self.starting_health = starting_health 
         self.current_health = starting_health 
     
@@ -12,12 +13,14 @@ class Hero:
         self.abilities.append(self.ability)
     
     def attack(self):
-        #will get back to this function 
-        for hero_attack in self.abilities:
-            return attack()
+        total_damage = 0
+        for i in self.abilities:
+            total_damage = i.attack()
+            return total_damage
+            
     
-    def take_damage(self, damage):
-        self.current_health -= damage
+    def take_damage(self):
+        self.current_health -= self.total_damage
     
     def is_alieve(self):
         if self.current_health >= 0:
@@ -27,19 +30,28 @@ class Hero:
             return False
             print('hero is dead')
     
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+
+    
     def fight(self, opponent):
-       while self.is_alieve() and opponent.is_alieve():
-           damage = self.attack()
-           opponent.take_damage(damage)
+        print('{} will be fighting {}'.format(self.name, self.opponent))
+        while self.is_alieve() == True and opponent.is_alieve() == True:
+           self.take_damage(opponent.attack()) 
+           opponent.take_damage(self.attack())
+           if opponent.is_alive() == False:
+               self.kill += 1
+        print('the fight continues')
+       
 
 
 
 
 class Ability:
     
-    def __init__(self, name, attack_strength):
+    def __init__(self, name, max_damage):
         self.name = name 
-        self.attack_strength = attack_strength
+        self.max_damage = max_damage
     
     def attack(self):
         return random.randint(0, self.attack_strength)
