@@ -24,7 +24,7 @@ class Hero:
             return True
             print('hero is alieve')
         else:
-            return false
+            return False
             print('hero is dead')
     
     def fight(self, opponent):
@@ -40,13 +40,14 @@ class Ability:
     def __init__(self, name, attack_strength):
         self.name = name 
         self.attack_strength = attack_strength
+    
     def attack(self):
-        self.attack_strength = random.randint(0, 10)
+        return random.randint(0, self.attack_strength)
 
 class Weapon(Ability):
     def attack(self):
         
-        return self.attack() // self.attack_strength
+        return self.attack() / self.attack_strength
 
 
 class Team:
@@ -71,12 +72,12 @@ class Team:
 
 
 if __name__ == '__main__':
-    hero = Hero("Wonder Woman")
+    hero = Hero()
     print(hero.attack())
-    ability = Ability("Divine Speed", 300)
+    ability = Ability()
     hero.add_ability(ability)
     print(hero.attack())
-    new_ability = Ability("Super Human Strength", 800)
+    new_ability = Ability()
     hero.add_ability(new_ability)
     print(hero.attack())
 
