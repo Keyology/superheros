@@ -1,6 +1,18 @@
 import random
 
 
+class Ability:
+    
+    def __init__(self, name, max_damage):
+        self.name = name 
+        self.max_damage = max_damage
+    
+    def attack(self):
+        max_attack = self.max_damage
+        min_attack = max_attack = 0
+        return random.randint(min_attack, self.max_damage)
+
+
 class Hero:
     def __init__(self, name, starting_health =100):
          
@@ -55,16 +67,6 @@ class Hero:
 
 
 
-class Ability:
-    
-    def __init__(self, name, max_damage):
-        self.name = name 
-        self.max_damage = max_damage
-    
-    def attack(self):
-        max_attack = self.max_damage
-        min_attack = max_attack = 0
-        return random.randint(min_attack, self.max_damage)
 
 class Weapon(Ability):
 
@@ -94,16 +96,22 @@ class Team:
         self.name = team_name
         self.heroes = list()
     
-    def add_hero(self, Hero):
+    def add_hero(self, hero):
         '''Add Hero object to heroes list.'''
-        self.heroes.append(Hero)
+        self.heroes.append(hero)
+        print("*** this is hero list:", self.heroes)
+   
+    def revive_heroes(self, health = 100):
+        for i in self.heroes:
+            i.current_health = health
     
     def remove_hero(self, name):
         for hero in self.heroes:
+            print("*** this is hero list:", self.heroes)
             if hero.name == name:
-                self.heroes.pop(hero)
-            else:
-                return 0
+                self.heroes.remove(hero)
+                print("This is self.heros:", self.heroes)
+        return 0
                 
     
         
@@ -128,7 +136,7 @@ if __name__ == '__main__':
     hero = Hero("Wonder Woman")
     print(hero.attack())
     ability = Ability("Divine Speed", 20)
-    hero.add_ability("flying")
+    hero.add_ability("")
     print(hero.attack())
     new_ability = Ability("Super Human Strength", 30)
     hero.add_ability(new_ability)
