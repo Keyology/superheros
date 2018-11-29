@@ -90,8 +90,6 @@ def test_hero_add_multi_ability():
 def test_hero_attack_ability():
     big_strength = superheroes.Ability("Overwhelming Strength", 30000)
     athena = superheroes.Hero("Athena")
-    # # missing adding the strength to athena
-    # athena.add_ability(big_strength)
     assert athena.attack() == 0
     athena.add_ability(big_strength)
     attack = athena.attack()
@@ -268,7 +266,6 @@ def test_team_remove_hero():
     team = superheroes.Team("One")
     jodie = superheroes.Hero("Jodie Foster")
     team.add_hero(jodie)
-    print("*** This is hero list", team.heroes)
     assert team.heroes[0].name == "Jodie Foster"
     team.remove_hero("Jodie Foster")
     assert len(team.heroes) == 0
