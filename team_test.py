@@ -351,7 +351,7 @@ def test_team_attack():
     team_one.attack(team_two)
 
     assert team_two.heroes[0].current_health <= 0
-
+#246 function build team 1
 
 def test_team_attack_kills():
     team_one = superheroes.Team("One")

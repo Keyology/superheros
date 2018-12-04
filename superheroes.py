@@ -1,9 +1,9 @@
 import random
 
 def verifyInt(K):
-    if not k.isnumeric():
+    if not K.isnumeric():
         return verifyInt(input("Invalid Input, Please enter an integer: "))
-    return int(k)
+    return int(K)
 
 class Hero:
     def __init__(self, name, starting_health=100):
@@ -205,7 +205,9 @@ class Arena:
         return hero
 
     def build_team_one(self):
+    
         name = input("Choose a name for this team: ")
+    
         self.team_one = Team(name)
         heroes = verifyInt(input("How many heroes on this team: "))
 
