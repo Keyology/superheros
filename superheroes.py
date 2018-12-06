@@ -81,7 +81,8 @@ class Ability:
 
     def attack(self):
         max_attack = self.max_damage
-        min_attack = max_attack = 0
+        min_attack = 0
+
         return random.randint(min_attack, max_attack)
 
 
@@ -102,7 +103,7 @@ class Weapon(Ability):
 class Team:
     def __init__(self, team_name):
         self.name = team_name
-        self.heroes = list()
+        self.heroes = []
 
     def healthCheck(self):
         health_total = 0
@@ -110,17 +111,17 @@ class Team:
             health_total += i.current_health
         return health_total
 
-    def add_hero(self, Hero):
-        self.heroes.append(Hero)
+    def add_hero(self, new_hero):
+        self.heroes.append(new_hero)
         print("*** this is hero list:", self.heroes)
 
     def remove_hero(self, name):
         removed = False
-        for a_hero in range(len(self.heroes)-1):
-            print("*** this is hero list:", a_hero)
-            if self.heroes[a_hero].name == name:
+        for i in range(len(self.heroes)):
+            print("*** this is hero list:", i)
+            if self.heroes[i].name == name:
                 print("This is self.heros:", self.heroes)
-                self.heroes.pop(a_hero)
+                self.heroes.pop(i)
                 removed == True
         if not removed:
         
@@ -145,7 +146,15 @@ class Team:
             print ("{}: {}".format(self.name, float(total_kills)))
 
     def view_all_heroes(self):
-        print(self.heroes)
+
+        # self is a team
+        # self.heroes is our list
+        # we are going to loop over self.heroes
+        # inside the loop we print each value at each index
+
+        # print(self.heroes) <~~ this wont work
+        for x in self.heroes:
+            print(x.name)
 
 
 
